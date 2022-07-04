@@ -39,13 +39,13 @@ class ViewController: UIViewController,
         return mapView
     }()
     
-    var addAddressButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "polyline"),
-                        for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+//    var addAddressButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(named: "polyline"),
+//                        for: .normal)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
     
     var addWayButton: UIButton = {
         let button = UIButton()
@@ -138,9 +138,9 @@ class ViewController: UIViewController,
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
         
-        addAddressButton.addTarget(self,
-                                   action: #selector(addAddressButtonTapped),
-                                   for: .touchUpInside)
+////        addAddressButton.addTarget(self,
+//                                   action: #selector(addAddressButtonTapped),
+//                                   for: .touchUpInside)
         addWayButton.addTarget(self,
                                action: #selector(addWayButtonTapped),
                                for: .touchUpInside)
@@ -467,15 +467,15 @@ extension ViewController {
                                         constant: 55)
         ])
         
-    mapView.addSubview(addAddressButton)
-    NSLayoutConstraint.activate([
-        addAddressButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                              constant: 808),
-        addAddressButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                                   constant: -330),
-        addAddressButton.heightAnchor.constraint(equalToConstant: 45),
-        addAddressButton.widthAnchor.constraint(equalToConstant: 45)
-        ])
+//    mapView.addSubview(addAddressButton)
+//    NSLayoutConstraint.activate([
+//        addAddressButton.topAnchor.constraint(equalTo: mapView.topAnchor,
+//                                              constant: 808),
+//        addAddressButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
+//                                                   constant: -330),
+//        addAddressButton.heightAnchor.constraint(equalToConstant: 45),
+//        addAddressButton.widthAnchor.constraint(equalToConstant: 45)
+//        ])
         
     mapView.addSubview(addWayButton)
     NSLayoutConstraint.activate([

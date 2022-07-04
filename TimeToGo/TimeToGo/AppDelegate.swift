@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  ggg
+//  TimeToGo
 //
-//  Created by Кирилл Пономаренко on 20.12.2021.
+//  Created by Kirill Ponomarenko on 10.06.2022.
 //
 
 import UIKit

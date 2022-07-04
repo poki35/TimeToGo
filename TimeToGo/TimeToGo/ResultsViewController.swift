@@ -14,5 +14,4 @@ class ResultsViewController: UIViewController {
 
         view.backgroundColor = .systemBlue
     }
-
 }
