@@ -16,6 +16,8 @@
 		A6C3DD0C2852DD520087B5D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6C3DD0B2852DD520087B5D8 /* Assets.xcassets */; };
 		A6C3DD0F2852DD520087B5D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C3DD0D2852DD520087B5D8 /* LaunchScreen.storyboard */; };
 		A6C3DD192852F0B80087B5D8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD182852F0B80087B5D8 /* Alert.swift */; };
+		A6CB8029287CCB9800A240F8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB8028287CCB9800A240F8 /* SettingsViewController.swift */; };
+		A6CB802C287CCC5E00A240F8 /* ZoomButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB802B287CCC5E00A240F8 /* ZoomButtonsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +25,7 @@
 		A661C760285625E1008B4990 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A6B6D8732856CDCD0026B6C3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A6B6D8752856D9130026B6C3 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
-		A6C3DCFF2852DD510087B5D8 /* TimeToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeToGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6C3DCFF2852DD510087B5D8 /* TimeToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TimeToGo.app; path = "/Users/kirillponomarenko/Desktop/Study/Study_Project/TimeToGo/build/Debug-iphoneos/TimeToGo.app"; sourceTree = "<absolute>"; };
 		A6C3DD022852DD510087B5D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD062852DD510087B5D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +33,8 @@
 		A6C3DD0E2852DD520087B5D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6C3DD102852DD520087B5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6C3DD182852F0B80087B5D8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		A6CB8028287CCB9800A240F8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A6CB802B287CCC5E00A240F8 /* ZoomButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomButtonsViewController.swift; sourceTree = "<group>"; };
 		AE6CFE905946E4EFBB67D009 /* Pods-TimeToGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGo.release.xcconfig"; path = "Target Support Files/Pods-TimeToGo/Pods-TimeToGo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,35 +69,44 @@
 			isa = PBXGroup;
 			children = (
 				A6C3DD012852DD510087B5D8 /* TimeToGo */,
-				A6C3DD002852DD510087B5D8 /* Products */,
 				9BC2EB2BD2200596C0DF844A /* Pods */,
 				1DAC75AD9916B6A8E0B96142 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		A6C3DD002852DD510087B5D8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A6C3DCFF2852DD510087B5D8 /* TimeToGo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A6C3DD012852DD510087B5D8 /* TimeToGo */ = {
 			isa = PBXGroup;
 			children = (
+				A6CB802A287CCC3800A240F8 /* ZoomButtons */,
 				A6C3DD022852DD510087B5D8 /* AppDelegate.swift */,
 				A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */,
 				A6C3DD062852DD510087B5D8 /* ViewController.swift */,
 				A6B6D8732856CDCD0026B6C3 /* ResultsViewController.swift */,
 				A6B6D8752856D9130026B6C3 /* GooglePlacesManager.swift */,
 				A6C3DD182852F0B80087B5D8 /* Alert.swift */,
+				A6CB8027287CCB5500A240F8 /* Settings */,
 				A661C760285625E1008B4990 /* Main.storyboard */,
 				A6C3DD0B2852DD520087B5D8 /* Assets.xcassets */,
 				A6C3DD0D2852DD520087B5D8 /* LaunchScreen.storyboard */,
 				A6C3DD102852DD520087B5D8 /* Info.plist */,
 			);
 			path = TimeToGo;
+			sourceTree = "<group>";
+		};
+		A6CB8027287CCB5500A240F8 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A6CB8028287CCB9800A240F8 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A6CB802A287CCC3800A240F8 /* ZoomButtons */ = {
+			isa = PBXGroup;
+			children = (
+				A6CB802B287CCC5E00A240F8 /* ZoomButtonsViewController.swift */,
+			);
+			path = ZoomButtons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,7 +155,7 @@
 				Base,
 			);
 			mainGroup = A6C3DCF62852DD510087B5D8;
-			productRefGroup = A6C3DD002852DD510087B5D8 /* Products */;
+			productRefGroup = A6C3DCF62852DD510087B5D8;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -213,8 +226,10 @@
 			files = (
 				A6B6D8762856D9130026B6C3 /* GooglePlacesManager.swift in Sources */,
 				A6C3DD072852DD510087B5D8 /* ViewController.swift in Sources */,
+				A6CB8029287CCB9800A240F8 /* SettingsViewController.swift in Sources */,
 				A6C3DD032852DD510087B5D8 /* AppDelegate.swift in Sources */,
 				A6C3DD192852F0B80087B5D8 /* Alert.swift in Sources */,
+				A6CB802C287CCC5E00A240F8 /* ZoomButtonsViewController.swift in Sources */,
 				A6B6D8742856CDCD0026B6C3 /* ResultsViewController.swift in Sources */,
 				A6C3DD052852DD510087B5D8 /* SceneDelegate.swift in Sources */,
 			);

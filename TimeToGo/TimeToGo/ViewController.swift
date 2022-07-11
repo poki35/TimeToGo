@@ -13,8 +13,6 @@ class ViewController: UIViewController,
                       UISearchResultsUpdating,
                       CLLocationManagerDelegate {
     
-//    let searchVC = UISearchController(searchResultsController: ResultsViewController())
-    
     var annotationArray = [MKPointAnnotation]()
     
     let backLabel = UIView(frame: CGRect(x: 100, y: 100, width: 392, height: 150))
@@ -49,8 +47,7 @@ class ViewController: UIViewController,
     
     var addWayButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "sent"),
-                        for: .normal)
+        button.setImage(UIImage(named: "sent"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         return button
@@ -58,8 +55,7 @@ class ViewController: UIViewController,
     
     var addResetButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "delete"),
-                        for: .normal)
+        button.setImage(UIImage(named: "delete"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         return button
@@ -67,24 +63,21 @@ class ViewController: UIViewController,
     
     var addMyLocationButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "near-me"),
-                        for: .normal)
+        button.setImage(UIImage(named: "near-me"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     var zoomInButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "plus"),
-                        for: .normal)
+        button.setImage(UIImage(named: "plus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     var zoomOutButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "minus"),
-                        for: .normal)
+        button.setImage(UIImage(named: "minus"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -138,24 +131,14 @@ class ViewController: UIViewController,
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
         
-////        addAddressButton.addTarget(self,
+//       addAddressButton.addTarget(self,
 //                                   action: #selector(addAddressButtonTapped),
 //                                   for: .touchUpInside)
-        addWayButton.addTarget(self,
-                               action: #selector(addWayButtonTapped),
-                               for: .touchUpInside)
-        addResetButton.addTarget(self,
-                                 action: #selector(addResetButtonTapped),
-                                 for: .touchUpInside)
-        addMyLocationButton.addTarget(self,
-                                      action: #selector(addMyLocationButtonTapped),
-                                      for: .touchUpInside)
-        zoomInButton.addTarget(self,
-                               action: #selector(zoomInButtonTapped),
-                               for: .touchUpInside)
-        zoomOutButton.addTarget(self,
-                                action: #selector(zoomOutButtonTapped),
-                                for: .touchUpInside)
+        addWayButton.addTarget(self, action: #selector(addWayButtonTapped), for: .touchUpInside)
+        addResetButton.addTarget(self, action: #selector(addResetButtonTapped), for: .touchUpInside)
+        addMyLocationButton.addTarget(self, action: #selector(addMyLocationButtonTapped), for: .touchUpInside)
+        zoomInButton.addTarget(self, action: #selector(zoomInButtonTapped), for: .touchUpInside)
+        zoomOutButton.addTarget(self, action: #selector(zoomOutButtonTapped), for: .touchUpInside)
         
         setConstraints()
     }
@@ -166,11 +149,9 @@ class ViewController: UIViewController,
     }
     
     @objc func zoomInButtonTapped() {
-        let region = MKCoordinateRegion(center: self.mapView.region.center,
-                                        span: MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta * 0.7,
-                                                                                                  longitudeDelta: mapView.region.span.longitudeDelta * 0.7))
-        mapView.setRegion(region,
-                          animated: true)
+        let region = MKCoordinateRegion(center: self.mapView.region.center, span: MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta * 0.7, longitudeDelta: mapView.region.span.longitudeDelta * 0.7))
+        
+        mapView.setRegion(region, animated: true)
         
         print("zoom in")
     }
@@ -200,14 +181,7 @@ class ViewController: UIViewController,
     
     @objc func addAddressButtonTapped() {
         searchController.searchBar.searchTextField.becomeFirstResponder()
-//        alertAddAddress(title: "Поиск адреса",
-//                        placeholder: "Введите адрес") { [self] (text) in
-//            setupPlaceMark(addressPlace: text)
-//
-//            print("Address")
-//
-//        }
-//
+
     }
     
     @objc func addWayButtonTapped() {
@@ -366,8 +340,13 @@ class ViewController: UIViewController,
         mapView.showAnnotations(annotationArray, animated: true)
     }
     
-     func createDirectionRequest(startCoordinate: CLLocationCoordinate2D,
-                                        destinationCoordinate: CLLocationCoordinate2D) {
+//    Функция конвертирования RoadTrip из секунд в минуты и часы
+    
+    func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+     func createDirectionRequest(startCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
          
         let startLocation = MKPlacemark(coordinate: startCoordinate)
         let destinationLocation = MKPlacemark(coordinate: destinationCoordinate)
@@ -396,7 +375,7 @@ class ViewController: UIViewController,
                 
             let route = response.routes[0]
                 
-            print(route.expectedTravelTime)
+                print(route.expectedTravelTime)
                 self.labell.text = "\(route.expectedTravelTime)"
             }
             
