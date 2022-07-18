@@ -37,13 +37,13 @@ class ViewController: UIViewController,
         return mapView
     }()
     
-//    var addAddressButton: UIButton = {
-//        let button = UIButton()
-//        button.setImage(UIImage(named: "polyline"),
-//                        for: .normal)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
+    //    var addAddressButton: UIButton = {
+    //        let button = UIButton()
+    //        button.setImage(UIImage(named: "polyline"),
+    //                        for: .normal)
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //        return button
+    //    }()
     
     var addWayButton: UIButton = {
         let button = UIButton()
@@ -92,7 +92,7 @@ class ViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         labell.center = CGPoint(x: 210, y: 830)
         labell.textAlignment = .center
         labell.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.7)
@@ -103,7 +103,7 @@ class ViewController: UIViewController,
         labell.isHidden = false
         
         backLabel.center = CGPoint(x: 207, y: 65)
-//        backLabel.textAlignment = .center
+        //        backLabel.textAlignment = .center
         backLabel.layer.cornerRadius = 25
         backLabel.layer.masksToBounds = true
         backLabel.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.7)
@@ -114,9 +114,9 @@ class ViewController: UIViewController,
         searchController.searchBar.placeholder = "Введите адрес.."
         searchController.searchResultsUpdater = self
         
-//        searchVC.searchBar.backgroundColor = .secondarySystemBackground
-//        searchVC.searchResultsUpdater = self
-//        navigationItem.searchController = searchVC
+        //        searchVC.searchBar.backgroundColor = .secondarySystemBackground
+        //        searchVC.searchResultsUpdater = self
+        //        navigationItem.searchController = searchVC
         view.addSubview(mapView)
         navigationItem.searchController = searchController
         title = "Поиск на карте"
@@ -125,15 +125,15 @@ class ViewController: UIViewController,
         mapView.showsUserLocation = true
         mapView.addSubview(labell)
         mapView.addSubview(backLabel)
-     
+        
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
         
-//       addAddressButton.addTarget(self,
-//                                   action: #selector(addAddressButtonTapped),
-//                                   for: .touchUpInside)
+        //       addAddressButton.addTarget(self,
+        //                                   action: #selector(addAddressButtonTapped),
+        //                                   for: .touchUpInside)
         addWayButton.addTarget(self, action: #selector(addWayButtonTapped), for: .touchUpInside)
         addResetButton.addTarget(self, action: #selector(addResetButtonTapped), for: .touchUpInside)
         addMyLocationButton.addTarget(self, action: #selector(addMyLocationButtonTapped), for: .touchUpInside)
@@ -141,11 +141,6 @@ class ViewController: UIViewController,
         zoomOutButton.addTarget(self, action: #selector(zoomOutButtonTapped), for: .touchUpInside)
         
         setConstraints()
-    }
-    
-    @objc func tripRange() {
-        
-        print("trip range")
     }
     
     @objc func zoomInButtonTapped() {
@@ -159,29 +154,29 @@ class ViewController: UIViewController,
     @objc func searching() {
         alertAddAddress(title: "Поиск адреса",
                         placeholder: "Введите адрес") { [self] (text) in
-        setupPlaceMark(addressPlace: text)
+            setupPlaceMark(addressPlace: text)
             
-        print("Address searching")
-    }
+            print("Address searching")
+        }
         
     }
     
     @objc func zoomOutButtonTapped() {
         let zoom = getZoom()
-           if zoom > 3.5 {  //Не ставить больше (выходит ошибка)
-               
-        let region = MKCoordinateRegion(center: self.mapView.region.center,
-                                        span: MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta / 0.7,
-                                                               longitudeDelta: mapView.region.span.longitudeDelta / 0.7)) //Не ставить больше (выходит ошибка)
-        mapView.setRegion(region,
-                          animated: true)
-    }
+        if zoom > 3.5 {  //Не ставить больше (выходит ошибка)
+            
+            let region = MKCoordinateRegion(center: self.mapView.region.center,
+                                            span: MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta / 0.7,
+                                                                   longitudeDelta: mapView.region.span.longitudeDelta / 0.7)) //Не ставить больше (выходит ошибка)
+            mapView.setRegion(region,
+                              animated: true)
+        }
         print("zoom out")
     }
     
     @objc func addAddressButtonTapped() {
         searchController.searchBar.searchTextField.becomeFirstResponder()
-
+        
     }
     
     @objc func addWayButtonTapped() {
@@ -190,7 +185,7 @@ class ViewController: UIViewController,
             createDirectionRequest(startCoordinate: annotationArray[index].coordinate,
                                    destinationCoordinate: annotationArray[index + 1].coordinate)
             
-    }
+        }
         mapView.showAnnotations(annotationArray,
                                 animated: true)
         
@@ -213,16 +208,16 @@ class ViewController: UIViewController,
         
         mapView.setCenter(mapView.userLocation.coordinate,
                           animated: true)
-
-            print("My location")
+        
+        print("My location")
     }
     
-//    Смещается карта(хз, надо поправить или нет -_-)
+    //    Смещается карта(хз, надо поправить или нет -_-)
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        mapView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.frame.size.width, height: view.frame.size.height - view.safeAreaInsets.top)
-//    }
+    //    override func viewDidLayoutSubviews() {
+    //        super.viewDidLayoutSubviews()
+    //        mapView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.frame.size.width, height: view.frame.size.height - view.safeAreaInsets.top)
+    //    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -232,12 +227,12 @@ class ViewController: UIViewController,
         locationManager.startUpdatingLocation()
     }
     
-//    func tripRange(_sender:UILabel) {
-//        let countTrip = Int(round(sender.value))
-//        labell.text = ""
-//
-//
-//    }
+    //    func tripRange(_sender:UILabel) {
+    //        let countTrip = Int(round(sender.value))
+    //        labell.text = ""
+    //
+    //
+    //    }
     
     func updateSearchResults(for searchController: UISearchController) {
         
@@ -246,10 +241,10 @@ class ViewController: UIViewController,
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-                          manager.startUpdatingLocation()
-                          manager.stopUpdatingLocation()
+            manager.startUpdatingLocation()
+            manager.stopUpdatingLocation()
             
-        render(location)
+            render(location)
             
         }
     }
@@ -268,23 +263,23 @@ class ViewController: UIViewController,
                           animated: true)
     }
     
-//    func updateSearchResults(for searchController: UISearchController) {
-//        guard let text = searchController.searchBar.text else {
-//            return
-//        }
-//        print(text)
-//    }
+    //    func updateSearchResults(for searchController: UISearchController) {
+    //        guard let text = searchController.searchBar.text else {
+    //            return
+    //        }
+    //        print(text)
+    //    }
     
     func getZoom() -> Double {
-
-    var angleCamera = self.mapView.camera.heading
+        
+        var angleCamera = self.mapView.camera.heading
         if  angleCamera > 270 {
             angleCamera = 560 - angleCamera
         }
         
         else if angleCamera > 90 {
             angleCamera = fabs(angleCamera - 180)
-    }
+        }
         let angleRad = Double.pi * angleCamera / 180
         let width = Double(self.view.frame.size.width)
         let height = Double(self.view.frame.size.height)
@@ -313,7 +308,7 @@ class ViewController: UIViewController,
                 print(error)
                 
                 self.alertError(title: "Ошибка",
-                           message: "Service is unavailable")
+                                message: "Service is unavailable")
                 
                 return
             }
@@ -333,21 +328,21 @@ class ViewController: UIViewController,
         annotationArray.append(annotation)
         
         if annotationArray.count > 1 {
-           addWayButton.isHidden = false
-           addResetButton.isHidden = false
+            addWayButton.isHidden = false
+            addResetButton.isHidden = false
         }
         
         mapView.showAnnotations(annotationArray, animated: true)
     }
     
-//    Функция конвертирования RoadTrip из секунд в минуты и часы
+    //    Функция конвертирования RoadTrip из секунд в минуты и часы
     
     func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
-     func createDirectionRequest(startCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
-         
+    func createDirectionRequest(startCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
+        
         let startLocation = MKPlacemark(coordinate: startCoordinate)
         let destinationLocation = MKPlacemark(coordinate: destinationCoordinate)
         let request = MKDirections.Request()
@@ -357,11 +352,11 @@ class ViewController: UIViewController,
         request.requestsAlternateRoutes = true
         
         let direction = MKDirections(request: request)
-         direction.calculate { [weak self] (response, error) in
-             if let error = error {
-                 print(error)
-                 return
-             }
+        direction.calculate { [weak self] (response, error) in
+            if let error = error {
+                print(error)
+                return
+            }
             
             guard let response = response, let self = self else {
                 self?.alertError(title: "Ошибка", message: "Дорога недоступна")
@@ -373,7 +368,7 @@ class ViewController: UIViewController,
             
             if response.routes.count > 0 {
                 
-            let route = response.routes[0]
+                let route = response.routes[0]
                 
                 print(route.expectedTravelTime)
                 self.labell.text = "\(route.expectedTravelTime)"
@@ -393,7 +388,7 @@ extension ViewController: MKMapViewDelegate {
                  rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-            renderer.strokeColor = .blue
+        renderer.strokeColor = .blue
         
         return renderer
     }
@@ -403,7 +398,7 @@ extension ViewController: MKMapViewDelegate {
 extension ViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         setupPlaceMark(addressPlace: searchBar.text)
-       
+        
     }
 }
 
@@ -432,58 +427,58 @@ extension ViewController {
     
     func setConstraints() {
         
-    view.addSubview(mapView)
+        view.addSubview(mapView)
         
-    NSLayoutConstraint.activate([
-        
-        mapView.topAnchor.constraint(equalTo: view.topAnchor,
-                                     constant: 0),
-        mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+        NSLayoutConstraint.activate([
+            
+            mapView.topAnchor.constraint(equalTo: view.topAnchor,
                                          constant: 0),
-        mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                          constant: 0),
-        mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                        constant: 55)
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                             constant: 0),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                              constant: 0),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
+                                            constant: 55)
         ])
         
-//    mapView.addSubview(addAddressButton)
-//    NSLayoutConstraint.activate([
-//        addAddressButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-//                                              constant: 808),
-//        addAddressButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-//                                                   constant: -330),
-//        addAddressButton.heightAnchor.constraint(equalToConstant: 45),
-//        addAddressButton.widthAnchor.constraint(equalToConstant: 45)
-//        ])
+        //    mapView.addSubview(addAddressButton)
+        //    NSLayoutConstraint.activate([
+        //        addAddressButton.topAnchor.constraint(equalTo: mapView.topAnchor,
+        //                                              constant: 808),
+        //        addAddressButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
+        //                                                   constant: -330),
+        //        addAddressButton.heightAnchor.constraint(equalToConstant: 45),
+        //        addAddressButton.widthAnchor.constraint(equalToConstant: 45)
+        //        ])
         
-    mapView.addSubview(addWayButton)
-    NSLayoutConstraint.activate([
-        addWayButton.leadingAnchor.constraint(equalTo: mapView.leadingAnchor,
-                                              constant: 165),
-        addWayButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor,
-                                             constant: -155),
-        addWayButton.heightAnchor.constraint(equalToConstant: 80),
-        addWayButton.widthAnchor.constraint(equalToConstant: 80)
+        mapView.addSubview(addWayButton)
+        NSLayoutConstraint.activate([
+            addWayButton.leadingAnchor.constraint(equalTo: mapView.leadingAnchor,
+                                                  constant: 165),
+            addWayButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor,
+                                                 constant: -155),
+            addWayButton.heightAnchor.constraint(equalToConstant: 80),
+            addWayButton.widthAnchor.constraint(equalToConstant: 80)
         ])
         
-    mapView.addSubview(addResetButton)
-    NSLayoutConstraint.activate([
-        addResetButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                            constant: 150),
-        addResetButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                                 constant: -20),
-        addResetButton.heightAnchor.constraint(equalToConstant: 45),
-        addResetButton.widthAnchor.constraint(equalToConstant: 45)
+        mapView.addSubview(addResetButton)
+        NSLayoutConstraint.activate([
+            addResetButton.topAnchor.constraint(equalTo: mapView.topAnchor,
+                                                constant: 150),
+            addResetButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
+                                                     constant: -20),
+            addResetButton.heightAnchor.constraint(equalToConstant: 45),
+            addResetButton.widthAnchor.constraint(equalToConstant: 45)
         ])
         
-    mapView.addSubview(addMyLocationButton)
-    NSLayoutConstraint.activate([
-        addMyLocationButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                                 constant: 808),
-        addMyLocationButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                                      constant: -30),
-        addMyLocationButton.heightAnchor.constraint(equalToConstant: 45),
-        addMyLocationButton.widthAnchor.constraint(equalToConstant: 45)
+        mapView.addSubview(addMyLocationButton)
+        NSLayoutConstraint.activate([
+            addMyLocationButton.topAnchor.constraint(equalTo: mapView.topAnchor,
+                                                     constant: 808),
+            addMyLocationButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
+                                                          constant: -30),
+            addMyLocationButton.heightAnchor.constraint(equalToConstant: 45),
+            addMyLocationButton.widthAnchor.constraint(equalToConstant: 45)
         ])
         
         mapView.addSubview(zoomInButton)
@@ -509,13 +504,13 @@ extension ViewController {
         mapView.addSubview(trip)
         NSLayoutConstraint.activate([
             trip.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                     constant: 800),
+                                      constant: 800),
             trip.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                          constant: -30),
+                                           constant: -30),
             trip.heightAnchor.constraint(equalTo: mapView.heightAnchor,
-                                        constant: 60),
+                                         constant: 60),
             trip.widthAnchor.constraint(equalTo: mapView.widthAnchor,
-                                       constant: 60)
+                                        constant: 60)
         ])
     }
 }

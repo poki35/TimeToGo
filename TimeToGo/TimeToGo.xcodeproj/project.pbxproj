@@ -22,10 +22,10 @@
 
 /* Begin PBXFileReference section */
 		46F1A4B534E293A2D2AF8AEF /* Pods-TimeToGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGo.debug.xcconfig"; path = "Target Support Files/Pods-TimeToGo/Pods-TimeToGo.debug.xcconfig"; sourceTree = "<group>"; };
+		A647875C2885B0E800BE48AA /* TimeToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TimeToGo.app; path = "/Users/kirillponomarenko/Desktop/Study/TimeToGo/TimeToGo/build/Debug-iphoneos/TimeToGo.app"; sourceTree = "<absolute>"; };
 		A661C760285625E1008B4990 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A6B6D8732856CDCD0026B6C3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A6B6D8752856D9130026B6C3 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
-		A6C3DCFF2852DD510087B5D8 /* TimeToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TimeToGo.app; path = "/Users/kirillponomarenko/Desktop/Study/Study_Project/TimeToGo/build/Debug-iphoneos/TimeToGo.app"; sourceTree = "<absolute>"; };
 		A6C3DD022852DD510087B5D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD062852DD510087B5D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			);
 			name = TimeToGo;
 			productName = TimeToGo;
-			productReference = A6C3DCFF2852DD510087B5D8 /* TimeToGo.app */;
+			productReference = A647875C2885B0E800BE48AA /* TimeToGo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
