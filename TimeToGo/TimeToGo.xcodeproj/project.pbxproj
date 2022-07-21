@@ -16,13 +16,12 @@
 		A6C3DD0C2852DD520087B5D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6C3DD0B2852DD520087B5D8 /* Assets.xcassets */; };
 		A6C3DD0F2852DD520087B5D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6C3DD0D2852DD520087B5D8 /* LaunchScreen.storyboard */; };
 		A6C3DD192852F0B80087B5D8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD182852F0B80087B5D8 /* Alert.swift */; };
-		A6CB8029287CCB9800A240F8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB8028287CCB9800A240F8 /* SettingsViewController.swift */; };
 		A6CB802C287CCC5E00A240F8 /* ZoomButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6CB802B287CCC5E00A240F8 /* ZoomButtonsViewController.swift */; };
+		A6F020E12888FE5800E05901 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F020E02888FE5800E05901 /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		46F1A4B534E293A2D2AF8AEF /* Pods-TimeToGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGo.debug.xcconfig"; path = "Target Support Files/Pods-TimeToGo/Pods-TimeToGo.debug.xcconfig"; sourceTree = "<group>"; };
-		A647875C2885B0E800BE48AA /* TimeToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = TimeToGo.app; path = "/Users/kirillponomarenko/Desktop/Study/TimeToGo/TimeToGo/build/Debug-iphoneos/TimeToGo.app"; sourceTree = "<absolute>"; };
 		A661C760285625E1008B4990 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A6B6D8732856CDCD0026B6C3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		A6B6D8752856D9130026B6C3 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
@@ -33,8 +32,9 @@
 		A6C3DD0E2852DD520087B5D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6C3DD102852DD520087B5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6C3DD182852F0B80087B5D8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		A6CB8028287CCB9800A240F8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A6CB802B287CCC5E00A240F8 /* ZoomButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomButtonsViewController.swift; sourceTree = "<group>"; };
+		A6F020DF2888E50700E05901 /* TimeToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeToGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6F020E02888FE5800E05901 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AE6CFE905946E4EFBB67D009 /* Pods-TimeToGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGo.release.xcconfig"; path = "Target Support Files/Pods-TimeToGo/Pods-TimeToGo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +71,7 @@
 				A6C3DD012852DD510087B5D8 /* TimeToGo */,
 				9BC2EB2BD2200596C0DF844A /* Pods */,
 				1DAC75AD9916B6A8E0B96142 /* Frameworks */,
+				A6F020DF2888E50700E05901 /* TimeToGo.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,7 +97,7 @@
 		A6CB8027287CCB5500A240F8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A6CB8028287CCB9800A240F8 /* SettingsViewController.swift */,
+				A6F020E02888FE5800E05901 /* SettingsViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -128,7 +129,7 @@
 			);
 			name = TimeToGo;
 			productName = TimeToGo;
-			productReference = A647875C2885B0E800BE48AA /* TimeToGo.app */;
+			productReference = A6F020DF2888E50700E05901 /* TimeToGo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -225,8 +226,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6B6D8762856D9130026B6C3 /* GooglePlacesManager.swift in Sources */,
+				A6F020E12888FE5800E05901 /* SettingsViewController.swift in Sources */,
 				A6C3DD072852DD510087B5D8 /* ViewController.swift in Sources */,
-				A6CB8029287CCB9800A240F8 /* SettingsViewController.swift in Sources */,
 				A6C3DD032852DD510087B5D8 /* AppDelegate.swift in Sources */,
 				A6C3DD192852F0B80087B5D8 /* Alert.swift in Sources */,
 				A6CB802C287CCC5E00A240F8 /* ZoomButtonsViewController.swift in Sources */,

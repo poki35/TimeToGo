@@ -9,14 +9,12 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ViewController: UIViewController,
-                      UISearchResultsUpdating,
-                      CLLocationManagerDelegate {
+class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManagerDelegate {
     
     var annotationArray = [MKPointAnnotation]()
     
-    let backLabel = UIView(frame: CGRect(x: 100, y: 100, width: 392, height: 150))
-    let labell = UILabel(frame: CGRect(x: 100, y: 100, width: 380, height: 60))
+    lazy var backLabel = UIView(frame: CGRect(x: 100, y: 100, width: 392, height: 150))
+    lazy var labell = UILabel(frame: CGRect(x: 100, y: 100, width: 380, height: 60))
     
     lazy var locationManager: CLLocationManager = {
         var manager = CLLocationManager()
@@ -37,19 +35,18 @@ class ViewController: UIViewController,
         return mapView
     }()
     
-    //    var addAddressButton: UIButton = {
-    //        let button = UIButton()
-    //        button.setImage(UIImage(named: "polyline"),
-    //                        for: .normal)
-    //        button.translatesAutoresizingMaskIntoConstraints = false
-    //        return button
-    //    }()
-    
     var addWayButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "sent"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
+        return button
+    }()
+    
+    var settingsButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "settings"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -99,11 +96,9 @@ class ViewController: UIViewController,
         labell.textColor = .white
         labell.layer.cornerRadius = 25
         labell.layer.masksToBounds = true
-        labell.text = ""
         labell.isHidden = false
         
         backLabel.center = CGPoint(x: 207, y: 65)
-        //        backLabel.textAlignment = .center
         backLabel.layer.cornerRadius = 25
         backLabel.layer.masksToBounds = true
         backLabel.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.7)
@@ -114,9 +109,6 @@ class ViewController: UIViewController,
         searchController.searchBar.placeholder = "Введите адрес.."
         searchController.searchResultsUpdater = self
         
-        //        searchVC.searchBar.backgroundColor = .secondarySystemBackground
-        //        searchVC.searchResultsUpdater = self
-        //        navigationItem.searchController = searchVC
         view.addSubview(mapView)
         navigationItem.searchController = searchController
         title = "Поиск на карте"
@@ -131,16 +123,21 @@ class ViewController: UIViewController,
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
         
-        //       addAddressButton.addTarget(self,
-        //                                   action: #selector(addAddressButtonTapped),
-        //                                   for: .touchUpInside)
         addWayButton.addTarget(self, action: #selector(addWayButtonTapped), for: .touchUpInside)
         addResetButton.addTarget(self, action: #selector(addResetButtonTapped), for: .touchUpInside)
         addMyLocationButton.addTarget(self, action: #selector(addMyLocationButtonTapped), for: .touchUpInside)
         zoomInButton.addTarget(self, action: #selector(zoomInButtonTapped), for: .touchUpInside)
         zoomOutButton.addTarget(self, action: #selector(zoomOutButtonTapped), for: .touchUpInside)
+        settingsButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         
         setConstraints()
+    }
+    
+    @objc func tapButton() {
+        let setViewControoler = SettingsViewController()
+        navigationController?.pushViewController(setViewControoler, animated: true)
+        
+        print("hello, button tapped")
     }
     
     @objc func zoomInButtonTapped() {
@@ -152,51 +149,50 @@ class ViewController: UIViewController,
     }
     
     @objc func searching() {
-        alertAddAddress(title: "Поиск адреса",
-                        placeholder: "Введите адрес") { [self] (text) in
+        alertAddAddress(title: "Поиск адреса", placeholder: "Введите адрес") { [self] (text) in
             setupPlaceMark(addressPlace: text)
             
             print("Address searching")
         }
-        
     }
     
     @objc func zoomOutButtonTapped() {
         let zoom = getZoom()
         if zoom > 3.5 {  //Не ставить больше (выходит ошибка)
             
-            let region = MKCoordinateRegion(center: self.mapView.region.center,
-                                            span: MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta / 0.7,
-                                                                   longitudeDelta: mapView.region.span.longitudeDelta / 0.7)) //Не ставить больше (выходит ошибка)
-            mapView.setRegion(region,
-                              animated: true)
+            let region = MKCoordinateRegion(center: self.mapView.region.center, span: MKCoordinateSpan(latitudeDelta: mapView.region.span.latitudeDelta / 0.7, longitudeDelta: mapView.region.span.longitudeDelta / 0.7))
+            mapView.setRegion(region, animated: true)
         }
+        
         print("zoom out")
     }
     
     @objc func addAddressButtonTapped() {
+        
         searchController.searchBar.searchTextField.becomeFirstResponder()
         
     }
     
     @objc func addWayButtonTapped() {
+        
         for index in 0...annotationArray.count - 2 {
-            
-            createDirectionRequest(startCoordinate: annotationArray[index].coordinate,
-                                   destinationCoordinate: annotationArray[index + 1].coordinate)
-            
+            createDirectionRequest(startCoordinate: annotationArray[index].coordinate,destinationCoordinate: annotationArray[index + 1].coordinate)
         }
-        mapView.showAnnotations(annotationArray,
-                                animated: true)
+        
+        mapView.showAnnotations(annotationArray, animated: true)
         
         print("Add way")
     }
     
     @objc func addResetButtonTapped() {
+        
+        annotationArray = [MKPointAnnotation]()
+        
         mapView.removeOverlays(mapView.overlays)
         mapView.removeAnnotations(mapView.annotations)
+        
         labell.text = nil
-        annotationArray = [MKPointAnnotation]()
+        
         addWayButton.isHidden = true
         addResetButton.isHidden = true
         
@@ -205,19 +201,10 @@ class ViewController: UIViewController,
     
     @objc func addMyLocationButtonTapped() {
         
-        
-        mapView.setCenter(mapView.userLocation.coordinate,
-                          animated: true)
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
         
         print("My location")
     }
-    
-    //    Смещается карта(хз, надо поправить или нет -_-)
-    
-    //    override func viewDidLayoutSubviews() {
-    //        super.viewDidLayoutSubviews()
-    //        mapView.frame = CGRect(x: 0, y: view.safeAreaInsets.top, width: view.frame.size.width, height: view.frame.size.height - view.safeAreaInsets.top)
-    //    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -227,19 +214,8 @@ class ViewController: UIViewController,
         locationManager.startUpdatingLocation()
     }
     
-    //    func tripRange(_sender:UILabel) {
-    //        let countTrip = Int(round(sender.value))
-    //        labell.text = ""
-    //
-    //
-    //    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-    }
-    
-    func locationManager(_ manager: CLLocationManager,
-                         didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             manager.startUpdatingLocation()
             manager.stopUpdatingLocation()
@@ -249,26 +225,19 @@ class ViewController: UIViewController,
         }
     }
     
-    func render(_ location:CLLocation) {
-        let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude,
-                                                longitude: location.coordinate.longitude)
-        
-        let span = MKCoordinateSpan(latitudeDelta: 0.006,
-                                    longitudeDelta: 0.006)
-        
-        let region = MKCoordinateRegion(center: coordinate,
-                                        span: span)
-        
-        mapView.setRegion(region,
-                          animated: true)
-    }
+    func updateSearchResults(for searchController: UISearchController) {
+            
+        }
     
-    //    func updateSearchResults(for searchController: UISearchController) {
-    //        guard let text = searchController.searchBar.text else {
-    //            return
-    //        }
-    //        print(text)
-    //    }
+    func render(_ location:CLLocation) {
+        let coordinate = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
+        let span = MKCoordinateSpan(latitudeDelta: 0.006, longitudeDelta: 0.006)
+        
+        let region = MKCoordinateRegion(center: coordinate, span: span)
+        
+        mapView.setRegion(region, animated: true)
+    }
     
     func getZoom() -> Double {
         
@@ -346,6 +315,7 @@ class ViewController: UIViewController,
         let startLocation = MKPlacemark(coordinate: startCoordinate)
         let destinationLocation = MKPlacemark(coordinate: destinationCoordinate)
         let request = MKDirections.Request()
+        
         request.source = MKMapItem(placemark: startLocation)
         request.destination = MKMapItem(placemark: destinationLocation)
         request.transportType = .automobile
@@ -389,128 +359,79 @@ extension ViewController: MKMapViewDelegate {
         
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = .blue
-        
         return renderer
     }
-    
 }
 
 extension ViewController: UISearchBarDelegate {
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         setupPlaceMark(addressPlace: searchBar.text)
         
     }
 }
 
-//extension ViewController: CLLocationManagerDelegate {
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        if status == .authorizedAlways {
-//            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-//                if CLLocationManager.isRangingAvailable() {
-//
-//                }
-//            }
-//        }
-//    }
-//
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        return
-//    }
-//}
-
+public extension UIView {
+    
+    func addSubviews(_ subviews: UIView...) {
+        subviews.forEach { addSubview($0) }
+    }
+    
+}
 
 extension ViewController {
     
-    func setConstraints() {
+    private func setConstraints() {
         
-        view.addSubview(mapView)
+        view.addSubviews(mapView, addWayButton, addResetButton, settingsButton, addMyLocationButton, zoomInButton, zoomOutButton, trip)
         
         NSLayoutConstraint.activate([
+            mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 55),
             
-            mapView.topAnchor.constraint(equalTo: view.topAnchor,
-                                         constant: 0),
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                             constant: 0),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                              constant: 0),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor,
-                                            constant: 55)
-        ])
-        
-        //    mapView.addSubview(addAddressButton)
-        //    NSLayoutConstraint.activate([
-        //        addAddressButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-        //                                              constant: 808),
-        //        addAddressButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-        //                                                   constant: -330),
-        //        addAddressButton.heightAnchor.constraint(equalToConstant: 45),
-        //        addAddressButton.widthAnchor.constraint(equalToConstant: 45)
-        //        ])
-        
-        mapView.addSubview(addWayButton)
-        NSLayoutConstraint.activate([
-            addWayButton.leadingAnchor.constraint(equalTo: mapView.leadingAnchor,
-                                                  constant: 165),
-            addWayButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor,
-                                                 constant: -155),
+            
+            addWayButton.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 165),
+            addWayButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -155),
             addWayButton.heightAnchor.constraint(equalToConstant: 80),
-            addWayButton.widthAnchor.constraint(equalToConstant: 80)
-        ])
-        
-        mapView.addSubview(addResetButton)
-        NSLayoutConstraint.activate([
-            addResetButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                                constant: 150),
-            addResetButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                                     constant: -20),
+            addWayButton.widthAnchor.constraint(equalToConstant: 80),
+            
+            
+            addResetButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 150),
+            addResetButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20),
             addResetButton.heightAnchor.constraint(equalToConstant: 45),
-            addResetButton.widthAnchor.constraint(equalToConstant: 45)
-        ])
-        
-        mapView.addSubview(addMyLocationButton)
-        NSLayoutConstraint.activate([
-            addMyLocationButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                                     constant: 808),
-            addMyLocationButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                                          constant: -30),
+            addResetButton.widthAnchor.constraint(equalToConstant: 45),
+            
+            
+            settingsButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 808),
+            settingsButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -335),
+            settingsButton.heightAnchor.constraint(equalToConstant: 45),
+            settingsButton.widthAnchor.constraint(equalToConstant: 45),
+            
+            
+            addMyLocationButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 808),
+            addMyLocationButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -30),
             addMyLocationButton.heightAnchor.constraint(equalToConstant: 45),
-            addMyLocationButton.widthAnchor.constraint(equalToConstant: 45)
-        ])
-        
-        mapView.addSubview(zoomInButton)
-        NSLayoutConstraint.activate([
-            zoomInButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                              constant: 400),
-            zoomInButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                                   constant: -10),
+            addMyLocationButton.widthAnchor.constraint(equalToConstant: 45),
+            
+            
+            zoomInButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 400),
+            zoomInButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
             zoomInButton.heightAnchor.constraint(equalToConstant: 55),
-            zoomInButton.widthAnchor.constraint(equalToConstant: 55)
-        ])
-        
-        mapView.addSubview(zoomOutButton)
-        NSLayoutConstraint.activate([
-            zoomOutButton.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                               constant: 470),
-            zoomOutButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                                    constant: -10),
+            zoomInButton.widthAnchor.constraint(equalToConstant: 55),
+            
+            
+            zoomOutButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 470),
+            zoomOutButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10),
             zoomOutButton.heightAnchor.constraint(equalToConstant: 55),
-            zoomOutButton.widthAnchor.constraint(equalToConstant: 55)
-        ])
-        
-        mapView.addSubview(trip)
-        NSLayoutConstraint.activate([
-            trip.topAnchor.constraint(equalTo: mapView.topAnchor,
-                                      constant: 800),
-            trip.trailingAnchor.constraint(equalTo: mapView.trailingAnchor,
-                                           constant: -30),
-            trip.heightAnchor.constraint(equalTo: mapView.heightAnchor,
-                                         constant: 60),
-            trip.widthAnchor.constraint(equalTo: mapView.widthAnchor,
-                                        constant: 60)
+            zoomOutButton.widthAnchor.constraint(equalToConstant: 55),
+            
+            
+            trip.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 800),
+            trip.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -30),
+            trip.heightAnchor.constraint(equalTo: mapView.heightAnchor, constant: 60),
+            trip.widthAnchor.constraint(equalTo: mapView.widthAnchor, constant: 60)
         ])
     }
 }
