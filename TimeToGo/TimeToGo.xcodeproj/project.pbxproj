@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A661C761285625E1008B4990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A661C760285625E1008B4990 /* Main.storyboard */; };
-		A6B6D8742856CDCD0026B6C3 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6D8732856CDCD0026B6C3 /* ResultsViewController.swift */; };
-		A6B6D8762856D9130026B6C3 /* GooglePlacesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B6D8752856D9130026B6C3 /* GooglePlacesManager.swift */; };
+		A667BCC628896F2E00BD9AF8 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A667BCC528896F2E00BD9AF8 /* WeatherViewController.swift */; };
 		A6C3DD032852DD510087B5D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD022852DD510087B5D8 /* AppDelegate.swift */; };
 		A6C3DD052852DD510087B5D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */; };
 		A6C3DD072852DD510087B5D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD062852DD510087B5D8 /* ViewController.swift */; };
@@ -23,8 +22,7 @@
 /* Begin PBXFileReference section */
 		46F1A4B534E293A2D2AF8AEF /* Pods-TimeToGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGo.debug.xcconfig"; path = "Target Support Files/Pods-TimeToGo/Pods-TimeToGo.debug.xcconfig"; sourceTree = "<group>"; };
 		A661C760285625E1008B4990 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A6B6D8732856CDCD0026B6C3 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
-		A6B6D8752856D9130026B6C3 /* GooglePlacesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesManager.swift; sourceTree = "<group>"; };
+		A667BCC528896F2E00BD9AF8 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		A6C3DD022852DD510087B5D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD062852DD510087B5D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +63,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A667BCC428896F0300BD9AF8 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				A667BCC528896F2E00BD9AF8 /* WeatherViewController.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		A6C3DCF62852DD510087B5D8 = {
 			isa = PBXGroup;
 			children = (
@@ -78,13 +84,12 @@
 		A6C3DD012852DD510087B5D8 /* TimeToGo */ = {
 			isa = PBXGroup;
 			children = (
-				A6CB802A287CCC3800A240F8 /* ZoomButtons */,
 				A6C3DD022852DD510087B5D8 /* AppDelegate.swift */,
 				A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */,
 				A6C3DD062852DD510087B5D8 /* ViewController.swift */,
-				A6B6D8732856CDCD0026B6C3 /* ResultsViewController.swift */,
-				A6B6D8752856D9130026B6C3 /* GooglePlacesManager.swift */,
 				A6C3DD182852F0B80087B5D8 /* Alert.swift */,
+				A667BCC428896F0300BD9AF8 /* Weather */,
+				A6CB802A287CCC3800A240F8 /* ZoomButtons */,
 				A6CB8027287CCB5500A240F8 /* Settings */,
 				A661C760285625E1008B4990 /* Main.storyboard */,
 				A6C3DD0B2852DD520087B5D8 /* Assets.xcassets */,
@@ -225,13 +230,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6B6D8762856D9130026B6C3 /* GooglePlacesManager.swift in Sources */,
+				A667BCC628896F2E00BD9AF8 /* WeatherViewController.swift in Sources */,
 				A6F020E12888FE5800E05901 /* SettingsViewController.swift in Sources */,
 				A6C3DD072852DD510087B5D8 /* ViewController.swift in Sources */,
 				A6C3DD032852DD510087B5D8 /* AppDelegate.swift in Sources */,
 				A6C3DD192852F0B80087B5D8 /* Alert.swift in Sources */,
 				A6CB802C287CCC5E00A240F8 /* ZoomButtonsViewController.swift in Sources */,
-				A6B6D8742856CDCD0026B6C3 /* ResultsViewController.swift in Sources */,
 				A6C3DD052852DD510087B5D8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
