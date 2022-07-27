@@ -7,38 +7,59 @@
 
 import UIKit
 
-class WeatherViewController: ViewController {
+protocol Weather: AnyObject {
     
-    private func buttons() {
+    func weatherTap()
+}
+
+class WeatherButtonView: UIView {
+    
+    weak var delegate: Weather?
+    
+    lazy var weatherBut: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "wea"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(weatherButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    init(delegate: Weather?) {
         
-        let weatherWidget = UIButton(frame: CGRect(x: 20, y: 100, width: 400, height: 50))
-        weatherWidget.setTitle("1 кнопка", for: .normal)
-        weatherWidget.layer.borderWidth = 0.5
-        weatherWidget.layer.borderColor = UIColor.white.cgColor
-        weatherWidget.backgroundColor = .systemBrown
-        weatherWidget.layer.cornerRadius = 10
-        weatherWidget.layer.masksToBounds = true
-        weatherWidget.addTarget(self, action: #selector(weatherButtonTapped), for:.touchUpInside)
-        view.addSubview(weatherWidget)
+        self.delegate = delegate
+        
+        super.init(frame: .zero)
+        
+        setConstraints()
         
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        buttons()
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     @objc func weatherButtonTapped() {
-        print("333")
+        
+        delegate?.weatherTap()
+        
+        print("weather tapped")
     }
     
-//    private func setConstrait() {
-//        
-////        NSLayoutConstraint.activate([weatherWidget.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 150),
-////                                     weatherWidget.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -20),
-////                                     weatherWidget.heightAnchor.constraint(equalToConstant: 45),
-////                                     weatherWidget.widthAnchor.constraint(equalToConstant: 45)])
-////    }
-//}
+}
 
+extension WeatherButtonView {
+    
+    private func setConstraints() {
+        
+        addSubviews(weatherBut)
+    
+        NSLayoutConstraint.activate([
+            weatherBut.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            weatherBut.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            weatherBut.heightAnchor.constraint(equalToConstant: 55),
+            weatherBut.widthAnchor.constraint(equalToConstant: 55),
+            
+            leadingAnchor.constraint(equalTo: weatherBut .leadingAnchor, constant: 0),
+            bottomAnchor.constraint(equalTo: weatherBut.bottomAnchor, constant: 0)])
+    }
 }

@@ -9,8 +9,7 @@ import UIKit
 import Foundation
 
 @main
-class AppDelegate: UIResponder,
-                   UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     

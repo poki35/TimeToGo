@@ -12,74 +12,8 @@ class SettingsViewController: UIViewController {
     
     var titlePost: String = "Настройки"
     
-//    lazy var firstButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("First", for: .normal)
-//        button.backgroundColor = .red
-//        button.layer.cornerRadius = 10
-//        button.layer.masksToBounds = true
-//        button.addTarget(self, action: #selector(firstButtonPressed), for:.touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//
-//    lazy var secondButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("second", for: .normal)
-//        button.backgroundColor = .red
-//        button.layer.cornerRadius = 10
-//        button.layer.masksToBounds = true
-//        button.addTarget(self, action: #selector(secondButtonPressed), for:.touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//
-//    lazy var threeButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("three", for: .normal)
-//        button.backgroundColor = .red
-//        button.layer.cornerRadius = 10
-//        button.layer.masksToBounds = true
-//        button.addTarget(self, action: #selector(threeButtonPressed), for:.touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//
-//    lazy var fourButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("four", for: .normal)
-//        button.backgroundColor = .red
-//        button.layer.cornerRadius = 10
-//        button.layer.masksToBounds = true
-//        button.addTarget(self, action: #selector(fourButtonPressed), for:.touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//
-//    lazy var fiveButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("five", for: .normal)
-//        button.backgroundColor = .red
-//        button.layer.cornerRadius = 10
-//        button.layer.masksToBounds = true
-//        button.addTarget(self, action: #selector(fiveButtonPressed), for:.touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-//
-//    lazy var sixButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle("six ind switch", for: .normal)
-//        button.backgroundColor = .red
-//        button.layer.cornerRadius = 10
-//        button.layer.masksToBounds = true
-//        button.addTarget(self, action: #selector(sixButtonPressed), for:.touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-    
         private func buttons() {
-    
+            // MARK: - Add constant's
             let buttonOne = UIButton(frame: CGRect(x: 7, y: 100, width: 400, height: 50))
             buttonOne.setTitle("1 кнопка", for: .normal)
             buttonOne.layer.borderWidth = 0.5
@@ -152,7 +86,7 @@ class SettingsViewController: UIViewController {
     
     
         }
-    
+    // MARK: - ViewDidLoad method
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,7 +96,7 @@ class SettingsViewController: UIViewController {
         
         buttons()
     }
-    
+    // MARK: - Obj-c function's
     @objc func firstButtonPressed() {
         let alertVC = UIAlertController(title: "Cлышь", message: "Че заняться нечем?", preferredStyle: .alert)
         let leftAction = UIAlertAction(title: "Да", style: .default, handler: {(action:UIAlertAction!) in print("Yes")})
@@ -213,7 +147,7 @@ class SettingsViewController: UIViewController {
         
         self.present(alertVC, animated: true, completion: nil)
     }
-    
+    // MARK: - Set constraint's (not activ)
 //    private func setUp() {
 //
 //        view.addSubviews(firstButton, secondButton, threeButton, fourButton, fiveButton, sixButton)

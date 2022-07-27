@@ -71,6 +71,13 @@
 			path = Weather;
 			sourceTree = "<group>";
 		};
+		A6C28D072891EC82003B5CAD /* BackViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BackViews;
+			sourceTree = "<group>";
+		};
 		A6C3DCF62852DD510087B5D8 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +95,7 @@
 				A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */,
 				A6C3DD062852DD510087B5D8 /* ViewController.swift */,
 				A6C3DD182852F0B80087B5D8 /* Alert.swift */,
+				A6C28D072891EC82003B5CAD /* BackViews */,
 				A667BCC428896F0300BD9AF8 /* Weather */,
 				A6CB802A287CCC3800A240F8 /* ZoomButtons */,
 				A6CB8027287CCB5500A240F8 /* Settings */,
