@@ -6,14 +6,14 @@
 //
 
 import UIKit
-
+// MARK: - Protocol's
 protocol Weather: AnyObject {
     
     func weatherTap()
 }
 
 class WeatherButtonView: UIView {
-    
+    // MARK: - Add constants
     weak var delegate: Weather?
     
     lazy var weatherBut: UIButton = {
@@ -23,7 +23,7 @@ class WeatherButtonView: UIView {
         button.addTarget(self, action: #selector(weatherButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+    // MARK: - Init
     init(delegate: Weather?) {
         
         self.delegate = delegate
@@ -37,7 +37,7 @@ class WeatherButtonView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: - Obj-C function's
     @objc func weatherButtonTapped() {
         
         delegate?.weatherTap()
@@ -46,13 +46,13 @@ class WeatherButtonView: UIView {
     }
     
 }
-
+// MARK: - Extension's
 extension WeatherButtonView {
     
     private func setConstraints() {
         
         addSubviews(weatherBut)
-    
+        
         NSLayoutConstraint.activate([
             weatherBut.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             weatherBut.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),

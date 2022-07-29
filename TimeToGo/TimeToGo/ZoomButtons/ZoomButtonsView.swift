@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// MARK: - Protocol's
 protocol ZoomButtonsDelegate: AnyObject {
     
     func zoomInTapped()
@@ -15,7 +15,7 @@ protocol ZoomButtonsDelegate: AnyObject {
 }
 
 class ZoomButtonsView: UIView {
-    
+    // MARK: - Add constants
     weak var delegate: ZoomButtonsDelegate?
     
     lazy var zoomInButton: UIButton = {
@@ -33,7 +33,7 @@ class ZoomButtonsView: UIView {
         button.addTarget(self, action: #selector(zoomOutButtonTapped), for: .touchUpInside)
         return button
     }()
-    
+    // MARK: - Init
     init(delegate: ZoomButtonsDelegate?) {
         
         self.delegate = delegate
@@ -47,7 +47,7 @@ class ZoomButtonsView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: - Obj-C function's
     @objc func zoomInButtonTapped() {
         delegate?.zoomInTapped()
         
@@ -61,7 +61,7 @@ class ZoomButtonsView: UIView {
     }
     
 }
-
+// MARK: - Extension's
 extension ZoomButtonsView {
     
     private func setConstraints() {
