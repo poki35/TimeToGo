@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A60C049D2892C8C2009D35D2 /* TypeButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60C049C2892C8C2009D35D2 /* TypeButtonsView.swift */; };
-		A6402C002893ECA10016B8B2 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6402BFF2893ECA10016B8B2 /* Labels.swift */; };
 		A6402C02289429860016B8B2 /* WayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6402C01289429860016B8B2 /* WayView.swift */; };
 		A661C761285625E1008B4990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A661C760285625E1008B4990 /* Main.storyboard */; };
 		A667BCC628896F2E00BD9AF8 /* WeatherButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A667BCC528896F2E00BD9AF8 /* WeatherButtonView.swift */; };
@@ -24,8 +22,6 @@
 
 /* Begin PBXFileReference section */
 		46F1A4B534E293A2D2AF8AEF /* Pods-TimeToGo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeToGo.debug.xcconfig"; path = "Target Support Files/Pods-TimeToGo/Pods-TimeToGo.debug.xcconfig"; sourceTree = "<group>"; };
-		A60C049C2892C8C2009D35D2 /* TypeButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeButtonsView.swift; sourceTree = "<group>"; };
-		A6402BFF2893ECA10016B8B2 /* Labels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		A6402C01289429860016B8B2 /* WayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayView.swift; sourceTree = "<group>"; };
 		A661C760285625E1008B4990 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A667BCC528896F2E00BD9AF8 /* WeatherButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherButtonView.swift; sourceTree = "<group>"; };
@@ -69,14 +65,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A60C049B2892C89B009D35D2 /* TypeButtonsView */ = {
-			isa = PBXGroup;
-			children = (
-				A60C049C2892C8C2009D35D2 /* TypeButtonsView.swift */,
-			);
-			path = TypeButtonsView;
-			sourceTree = "<group>";
-		};
 		A667BCC428896F0300BD9AF8 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,7 +76,6 @@
 		A6C28D072891EC82003B5CAD /* BackViews */ = {
 			isa = PBXGroup;
 			children = (
-				A6402BFF2893ECA10016B8B2 /* Labels.swift */,
 				A6402C01289429860016B8B2 /* WayView.swift */,
 			);
 			path = BackViews;
@@ -111,7 +98,6 @@
 				A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */,
 				A6C3DD062852DD510087B5D8 /* ViewController.swift */,
 				A6C3DD182852F0B80087B5D8 /* Alert.swift */,
-				A60C049B2892C89B009D35D2 /* TypeButtonsView */,
 				A6C28D072891EC82003B5CAD /* BackViews */,
 				A667BCC428896F0300BD9AF8 /* Weather */,
 				A6CB802A287CCC3800A240F8 /* ZoomButtons */,
@@ -259,8 +245,6 @@
 				A6F020E12888FE5800E05901 /* SettingsViewController.swift in Sources */,
 				A6C3DD072852DD510087B5D8 /* ViewController.swift in Sources */,
 				A6C3DD032852DD510087B5D8 /* AppDelegate.swift in Sources */,
-				A60C049D2892C8C2009D35D2 /* TypeButtonsView.swift in Sources */,
-				A6402C002893ECA10016B8B2 /* Labels.swift in Sources */,
 				A6C3DD192852F0B80087B5D8 /* Alert.swift in Sources */,
 				A6CB802C287CCC5E00A240F8 /* ZoomButtonsView.swift in Sources */,
 				A6402C02289429860016B8B2 /* WayView.swift in Sources */,

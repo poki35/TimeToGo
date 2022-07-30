@@ -48,13 +48,6 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         return button
     }()
     
-    var selectTypeRoad: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "map"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     var typeMapButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "map"), for: .normal)
@@ -153,6 +146,8 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         mapView.delegate = self
         mapView.showsUserLocation = true
         
+        backView.isHidden = true
+        
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
@@ -171,8 +166,6 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         settingsButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         
         typeMapButton.addTarget(self, action: #selector(typeMapButtonTapped), for: .touchUpInside)
-        
-        selectTypeRoad.addTarget(self, action: #selector(typeMapButtonTapped), for: .touchUpInside)
         
         setConstraints()
     }
@@ -228,12 +221,19 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         mapView.removeOverlays(mapView.overlays)
         mapView.removeAnnotations(mapView.annotations)
         
-        labell.text = nil
+        backView.counterKm.text = nil
+        backView.counterDistance.text = nil
         
         addWayButton.isHidden = true
         addResetButton.isHidden = true
         backLabel.isHidden = false
+        labell.isHidden = false
+        addMyLocationButton.isHidden = false
+        settingsButton.isHidden = false
+        typeMapButton.isHidden = false
+        weatherButton.isHidden = false
         searchController.searchBar.isHidden = false
+        backView.isHidden = true
         
         print("Add reset")
     }
@@ -272,8 +272,8 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
     }
     
     func roadType() {
-        selectTypeRoad.menu = menuType
-        selectTypeRoad.showsMenuAsPrimaryAction = true
+        backView.selectTypeRoad.menu = menuType
+        backView.selectTypeRoad.showsMenuAsPrimaryAction = true
     }
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -347,14 +347,14 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         annotationArray.append(annotation)
         
         if annotationArray.count > 0 {
-            addResetButton.isHidden = false
+            
             backView.isHidden = false
             settingsButton.isHidden = true
             addMyLocationButton.isHidden = true
-            selectTypeRoad.isHidden = true
             typeMapButton.isHidden = true
             weatherButton.isHidden = true
             labell.isHidden = true
+            backView.isHidden = false
         }
         
         mapView.showAnnotations(annotationArray, animated: true)
@@ -362,8 +362,8 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
     
     //    Функция конвертирования RoadTrip из секунд в минуты и часы
     func secondsToHoursMinutesSeconds(_ seconds: Int) -> (Int, Int, Int) {
-             return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-         }
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
     func metersToKillometers(_ meters: Int) -> Int {
         return (meters / 1000)
     }
@@ -411,14 +411,14 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
                 
                 self.backView.counterKm.text = "\(kmFormatter) км"
                 
-//                let formatter = DateComponentsFormatter()
+                //                let formatter = DateComponentsFormatter()
                 
-//                self.labell.text = formatter.string(from: route.expectedTravelTime)
-//                print(formatter)
+                //                self.labell.text = formatter.string(from: route.expectedTravelTime)
+                //                print(formatter)
                 
-//                let formatter = MKDistanceFormatter()
-//                self.labell.text = formatter.string(fromDistance: route.distance)
-            
+                //                let formatter = MKDistanceFormatter()
+                //                self.labell.text = formatter.string(fromDistance: route.distance)
+                
             }
             
             self.mapView.addOverlay(minRoutes.polyline)
@@ -441,7 +441,6 @@ extension ViewController: MKMapViewDelegate {
         searchController.searchBar.isHidden = true
         addWayButton.isHidden = true
         weatherButton.isHidden = true
-        selectTypeRoad.isHidden = true
         
         return renderer
     }
@@ -472,6 +471,12 @@ extension ViewController: Weather {
 }
 
 extension ViewController: ViewButtons {
+    func typeRoad() {
+        
+        typeMapButtonTapped()
+        
+    }
+    
     func reset() {
         
         addResetButtonTapped()
@@ -480,6 +485,7 @@ extension ViewController: ViewButtons {
     }
     
     func goBut() {
+        
         addWayButtonTapped()
         
         
@@ -513,7 +519,7 @@ extension ViewController {
     
     private func setConstraints() {
         
-        view.addSubviews(mapView, labell, backLabel, addResetButton, settingsButton, addMyLocationButton, typeMapButton, zoomView, weatherButton, selectTypeRoad, backView, addWayButton)
+        view.addSubviews(mapView, labell, backLabel, addResetButton, settingsButton, addMyLocationButton, typeMapButton, zoomView, weatherButton, backView, addWayButton)
         
         zoomView.translatesAutoresizingMaskIntoConstraints = false
         weatherButton.translatesAutoresizingMaskIntoConstraints = false
@@ -548,10 +554,10 @@ extension ViewController {
             addWayButton.heightAnchor.constraint(equalToConstant: 80),
             addWayButton.widthAnchor.constraint(equalToConstant: 80),
             
-            selectTypeRoad.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 740),
-            selectTypeRoad.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -80),
-            selectTypeRoad.heightAnchor.constraint(equalToConstant: 50),
-            selectTypeRoad.widthAnchor.constraint(equalToConstant: 50),
+            //            selectTypeRoad.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 740),
+            //            selectTypeRoad.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -80),
+            //            selectTypeRoad.heightAnchor.constraint(equalToConstant: 50),
+            //            selectTypeRoad.widthAnchor.constraint(equalToConstant: 50),
             
             
             addResetButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 740),
