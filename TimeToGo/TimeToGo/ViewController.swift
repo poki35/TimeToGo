@@ -27,6 +27,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
     lazy var zoomView = ZoomButtonsView(delegate: self)
     lazy var weatherButton = WeatherButtonView(delegate: self)
     lazy var backView = WayView(delegate: self)
+    lazy var trip = TripView(delegate: self)
     
     lazy var locationManager: CLLocationManager = {
         var manager = CLLocationManager()
@@ -36,14 +37,12 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
     
     let mapView: MKMapView = {
         let mapView = MKMapView()
-        mapView.translatesAutoresizingMaskIntoConstraints = false
         return mapView
     }()
     
     var addWayButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "sent"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         return button
     }()
@@ -51,21 +50,18 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
     var typeMapButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "map"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     var settingsButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "settings"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     var addResetButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "delete"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.isHidden = true
         return button
     }()
@@ -73,13 +69,11 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
     var addMyLocationButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "near-me"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     var searchController: UISearchController = {
         let button = UISearchController()
-        button.searchBar.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -87,13 +81,10 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         return [
             UIAction(title: "Пешком", image: nil, handler: { (selectTypeRoad) in
                 self.typeTransport = .walking
-                
             }),
             UIAction(title: "На машине", image: nil, handler: { (selectTypeRoad) in
                 self.typeTransport = .automobile
-            }),
-            
-        ]}
+            })]}
     
     var menuType: UIMenu {
         return UIMenu(title: "pox", image: nil, options: [], children: menuTypeRoad)
@@ -109,15 +100,13 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
             }),
             UIAction(title: "Гибрид", image: UIImage(systemName: "moon"), handler: { (typeMapButton) in
                 self.mapView.mapType = .hybrid
-            })]
-    }
+            })]}
     
     var demoMenu: UIMenu {
         return UIMenu(title: "Вид карты", image: nil, identifier: nil, options: [], children: menuItems)
     }
     
     // MARK: - ViewDidLoad method
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -134,7 +123,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         backLabel.layer.masksToBounds = true
         backLabel.backgroundColor = UIColor.systemGray6.withAlphaComponent(0.7)
         
-        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.backgroundColor = UIColor.clear
         searchController.searchBar.placeholder = "Введите адрес.."
@@ -368,7 +357,7 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
         return (meters / 1000)
     }
     
-    func createDirectionRequest(startCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D, transportType: MKDirectionsTransportType?) {
+    public func createDirectionRequest(startCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D, transportType: MKDirectionsTransportType?) {
         
         mapView.removeOverlays(mapView.overlays)
         
@@ -411,14 +400,6 @@ class ViewController: UIViewController, UISearchResultsUpdating, CLLocationManag
                 
                 self.backView.counterKm.text = "\(kmFormatter) км"
                 
-                //                let formatter = DateComponentsFormatter()
-                
-                //                self.labell.text = formatter.string(from: route.expectedTravelTime)
-                //                print(formatter)
-                
-                //                let formatter = MKDistanceFormatter()
-                //                self.labell.text = formatter.string(fromDistance: route.distance)
-                
             }
             
             self.mapView.addOverlay(minRoutes.polyline)
@@ -436,7 +417,7 @@ extension ViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        renderer.strokeColor = .green
+        renderer.strokeColor = .init(red: 50 / 255, green: 205 / 255, blue: 50 / 255, alpha: 1)
         backLabel.isHidden = true
         searchController.searchBar.isHidden = true
         addWayButton.isHidden = true
@@ -467,6 +448,14 @@ extension ViewController: Weather {
         
         labell.text = "norm pogodka"
     }
+    
+}
+
+extension ViewController: TripSet {
+    func set() {
+        print("1231231")
+    }
+    
     
 }
 
@@ -519,11 +508,19 @@ extension ViewController {
     
     private func setConstraints() {
         
-        view.addSubviews(mapView, labell, backLabel, addResetButton, settingsButton, addMyLocationButton, typeMapButton, zoomView, weatherButton, backView, addWayButton)
+        view.addSubviews(mapView, labell, backLabel, addResetButton, settingsButton, addMyLocationButton, typeMapButton, zoomView, weatherButton, backView, trip)
         
         zoomView.translatesAutoresizingMaskIntoConstraints = false
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         weatherButton.translatesAutoresizingMaskIntoConstraints = false
+        addMyLocationButton.translatesAutoresizingMaskIntoConstraints = false
+        settingsButton.translatesAutoresizingMaskIntoConstraints = false
+        addWayButton.translatesAutoresizingMaskIntoConstraints = false
         backView.translatesAutoresizingMaskIntoConstraints = false
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        addResetButton.translatesAutoresizingMaskIntoConstraints = false
+        typeMapButton.translatesAutoresizingMaskIntoConstraints = false
+        trip.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
@@ -534,6 +531,10 @@ extension ViewController {
             
             weatherButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 150),
             weatherButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -350),
+            
+            trip.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 750),
+            trip.heightAnchor.constraint(equalToConstant: 35),
+            trip.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 20),
             
             backView.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 750),
             backView.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: 200),
@@ -547,18 +548,6 @@ extension ViewController {
             typeMapButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -275),
             typeMapButton.heightAnchor.constraint(equalToConstant: 50),
             typeMapButton.widthAnchor.constraint(equalToConstant: 50),
-            
-            
-            addWayButton.leadingAnchor.constraint(equalTo: mapView.leadingAnchor, constant: 165),
-            addWayButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -155),
-            addWayButton.heightAnchor.constraint(equalToConstant: 80),
-            addWayButton.widthAnchor.constraint(equalToConstant: 80),
-            
-            //            selectTypeRoad.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 740),
-            //            selectTypeRoad.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -80),
-            //            selectTypeRoad.heightAnchor.constraint(equalToConstant: 50),
-            //            selectTypeRoad.widthAnchor.constraint(equalToConstant: 50),
-            
             
             addResetButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 740),
             addResetButton.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -30),

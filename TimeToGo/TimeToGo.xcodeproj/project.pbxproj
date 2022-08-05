@@ -10,6 +10,7 @@
 		A6402C02289429860016B8B2 /* WayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6402C01289429860016B8B2 /* WayView.swift */; };
 		A661C761285625E1008B4990 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A661C760285625E1008B4990 /* Main.storyboard */; };
 		A667BCC628896F2E00BD9AF8 /* WeatherButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A667BCC528896F2E00BD9AF8 /* WeatherButtonView.swift */; };
+		A6BE432728984104006B23F2 /* TripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE432628984104006B23F2 /* TripView.swift */; };
 		A6C3DD032852DD510087B5D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD022852DD510087B5D8 /* AppDelegate.swift */; };
 		A6C3DD052852DD510087B5D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */; };
 		A6C3DD072852DD510087B5D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3DD062852DD510087B5D8 /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 		A6402C01289429860016B8B2 /* WayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WayView.swift; sourceTree = "<group>"; };
 		A661C760285625E1008B4990 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A667BCC528896F2E00BD9AF8 /* WeatherButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherButtonView.swift; sourceTree = "<group>"; };
+		A6BE432628984104006B23F2 /* TripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripView.swift; sourceTree = "<group>"; };
 		A6C3DD022852DD510087B5D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD042852DD510087B5D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A6C3DD062852DD510087B5D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				A6402C01289429860016B8B2 /* WayView.swift */,
+				A6BE432628984104006B23F2 /* TripView.swift */,
 			);
 			path = BackViews;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6BE432728984104006B23F2 /* TripView.swift in Sources */,
 				A667BCC628896F2E00BD9AF8 /* WeatherButtonView.swift in Sources */,
 				A6F020E12888FE5800E05901 /* SettingsViewController.swift in Sources */,
 				A6C3DD072852DD510087B5D8 /* ViewController.swift in Sources */,
