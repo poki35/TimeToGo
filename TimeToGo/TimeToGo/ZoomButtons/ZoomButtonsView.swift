@@ -21,7 +21,6 @@ class ZoomButtonsView: UIView {
     lazy var zoomInButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "plus"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(zoomInButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -29,7 +28,6 @@ class ZoomButtonsView: UIView {
     lazy var zoomOutButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "minus"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(zoomOutButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -67,6 +65,9 @@ extension ZoomButtonsView {
     private func setConstraints() {
         
         addSubviews(zoomInButton, zoomOutButton)
+        
+        zoomInButton.translatesAutoresizingMaskIntoConstraints = false
+        zoomOutButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             zoomInButton.topAnchor.constraint(equalTo: topAnchor, constant: 0),

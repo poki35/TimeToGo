@@ -19,7 +19,6 @@ class WeatherButtonView: UIView {
     lazy var weatherBut: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "wea"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(weatherButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -52,6 +51,8 @@ extension WeatherButtonView {
     private func setConstraints() {
         
         addSubviews(weatherBut)
+        
+        weatherBut.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             weatherBut.topAnchor.constraint(equalTo: topAnchor, constant: 0),
